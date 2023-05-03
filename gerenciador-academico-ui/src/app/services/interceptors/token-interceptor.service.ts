@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { TokenService } from './token.service';
+import { TokenService } from '../token.service';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -27,6 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse): any => {
         if (error.status === 401 || error.status === 403) {
           this.router.navigate(['/auth/login']);
+          alert('Acesso negado. Você não tem permissão para acessar este diretorio, contate o administrador.');
           return throwError(error);
         }
       })
@@ -34,3 +35,4 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
 }
+  

@@ -1,3 +1,3 @@
 export interface IDashboardDto {
-    text: string;
+    title: string;
 }

@@ -8,7 +8,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 })
 export class DashboardComponent implements OnInit{
 
-  message: string = '';
+  title: string = '';
 
   constructor(private dashboardService: DashboardService) {
   }
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit{
     this.dashboardService.getDashboard().subscribe({
       next: (res) => {
         console.log(res);
-        this.message = res.message;
+        this.title = res.message;
       },
       error: (e) => {
         console.log("erro")

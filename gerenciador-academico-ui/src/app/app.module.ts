@@ -3,27 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { TokenInterceptor } from './services/token-interceptor.service';
-
+import { TokenInterceptor } from './services/interceptors/token-interceptor.service';
+import { HomeModule } from './pages/home/home.module';
+import { DashboardModule } from './pages/dashboard/dashboard.module';
+import { LoginModule } from './pages/login/login.module';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    DashboardComponent
-  ],
+  declarations: [AppComponent, ButtonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    HomeModule,
+    DashboardModule,
+    LoginModule,
   ],
   providers: [
     {
@@ -32,6 +28,6 @@ import { TokenInterceptor } from './services/token-interceptor.service';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
