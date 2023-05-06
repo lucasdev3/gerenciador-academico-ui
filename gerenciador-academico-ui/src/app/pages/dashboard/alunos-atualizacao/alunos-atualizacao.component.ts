@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./alunos-atualizacao.component.css'],
 })
 export class AlunosAtualizacaoComponent {
+  goToAlunos: boolean = true;
   constructor() {}
 }

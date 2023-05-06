@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./alunos-cadastro.component.css'],
 })
 export class AlunosCadastroComponent {
-  title: string = 'Alunos';
   goToAlunos: boolean = true;
   constructor() {}
 }
