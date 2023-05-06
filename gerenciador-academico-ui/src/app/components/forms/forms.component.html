@@ -1,0 +1,39 @@
+<div class="container" *ngIf="formNovoAluno">
+    <h2>{{ title }}</h2>
+    <form [formGroup]="novoAluno" (ngSubmit)="salvar()" class="alunos">
+        <div>
+            <label for="matricula">matricula:</label>
+            <input type="text" id="matricula" name="matricula" formControlName="matricula">
+        </div>
+        <div>
+            <label for="nome">nome:</label>
+            <input type="text" id="nome" name="nome" formControlName="nome">
+        </div>
+        <div>
+            <label for="email">email:</label>
+            <input type="text" id="email" name="email" formControlName="email">
+        </div>
+        <div>
+            <label for="dataNascimento">dataNascimento:</label>
+            <input type="text" id="dataNascimento" name="dataNascimento" formControlName="dataNascimento">
+        </div>
+        <button type="submit">Salvar aluno</button>
+        <button type="button" (click)="goToAlunos">Voltar</button>
+    </form>
+</div>
+
+<div class="container" *ngIf="formAtualizarAluno">
+    <h2>{{ title }}</h2>
+    <form [formGroup]="atualizarAluno" (ngSubmit)="atualizar()" class="alunos">
+        <div>
+            <label for="nome">nome:</label>
+            <input type="text" id="nome" name="nome" formControlName="nome">
+        </div>
+        <div>
+            <label for="dataNascimento">dataNascimento:</label>
+            <input type="text" id="dataNascimento" name="dataNascimento" formControlName="dataNascimento">
+        </div>
+        <button type="submit">Salvar aluno</button>
+        <button type="button" (click)="goToAlunos">Voltar</button>
+    </form>
+</div>

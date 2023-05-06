@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 import { enviroment } from '../enviroments/enviroments';
 import { ILoginDto } from '../models/login.dto';
-import { ITokenDto } from '../models/token.dto';
 import { Observable } from 'rxjs';
 
 @Injectable({

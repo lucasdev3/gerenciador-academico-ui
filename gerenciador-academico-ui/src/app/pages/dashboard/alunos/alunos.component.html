@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="style-tabela">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+            <tbody>
+
+                <tr>
+                    <!-- <td class="top center"><i class="icofont-users-alt-4"></i></td> -->
+                    <td class="top center"><strong>Matricula</strong></td>
+                    <td class="top center"><strong>Nome</strong></td>
+                    <td class="top center"><strong>E-mail</strong></td>
+                    <td class="top center"><strong>Data de Nascimento</strong></td>
+                    <td class="top center" colspan="2" width="1"><strong>Ações</strong></td>
+                </tr>
+
+            </tbody>
+            <tbody>
+                <tr *ngFor="let aluno of alunos">
+                    <td align="center">{{aluno.matricula}}</td>
+                    <td align="center">{{aluno.nome}}</td>
+                    <td align="center">{{aluno.email}}</td>
+                    <td align="center">{{aluno.dataNascimento}}</td>
+                    <!-- <td align="center">25/04/2021 <strong>às</strong> 01:03:02</td> -->
+                    <td align="center"> <a routerLink="/dashboard/alunos/atualizar/{{aluno.matricula}}" class="editar fa fa-fa fa-check-circle" title="Editar">Editar</a>
+                    </td>
+                    <td align="center"> <a routerLink="/dashboard/alunos/deletar/{{aluno.matricula}}"  class="deletar fa fa-times-circle" title="Deletar">Deletar</a> </td>
+                </tr>
+
+                <!-- <tr class="mensagemAlerta">
+                    <td align="center">2</td>
+                    <td align="center">Lucas</td>
+                    <td align="center">lucas@site.com.br</td>
+                    <td align="center">25/04/2021 <strong>às</strong> 01:03:02</td>
+                    <td align="center"> <a href="#" class="editar fa fa-fa fa-check-circle" title="Editar"></a> </td>
+                    <td align="center"> <a href="#" class="deletar fa fa-times-circle" title="Deletar"></a> </td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div><!--tabela-->
+    <div>
+        <button (click)="goToCadastro()">Cadastrar Aluno</button>
+    </div>
+</div>

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
+  constructor() {}
 
-  constructor() { }
-
-public saveData(key: string, value: string) {
+  public saveData(key: string, value: string) {
     localStorage.setItem(key, value);
   }
 
   public getData(key: string) {
-    return localStorage.getItem(key)
+    return localStorage.getItem(key);
   }
   public removeData(key: string) {
     localStorage.removeItem(key);
@@ -21,5 +20,4 @@ public saveData(key: string, value: string) {
   public clearData() {
     localStorage.clear();
   }
-
 }
