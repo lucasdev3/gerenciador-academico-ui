@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AlunosCadastroComponent {
   title: string = 'Alunos';
+  goToAlunos: boolean = true;
   constructor() {}
 }

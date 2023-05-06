@@ -20,7 +20,9 @@ export class FormsComponent implements OnInit{
 
   @Input() title: string = '';
 
+
   matricula:string = '';
+
   
 
   constructor(
@@ -68,10 +70,6 @@ export class FormsComponent implements OnInit{
       });
       
     }
-  }
-
-  goToAlunos() {
-    this.router.navigate(['/dashboard/alunos']);
   }
 
   salvar() {

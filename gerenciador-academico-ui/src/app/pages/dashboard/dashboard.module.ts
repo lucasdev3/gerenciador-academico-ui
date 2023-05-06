@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { AlunosModule } from './alunos/alunos.module';
 import { AlunosAtualizacaoModule } from './alunos-atualizacao/alunos-atualizacao.module';
+import { AlunosCadastroModule } from './alunos-cadastro/alunos-cadastro.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -10,6 +11,7 @@ import { AlunosAtualizacaoModule } from './alunos-atualizacao/alunos-atualizacao
   imports: [
     CommonModule,
     AlunosModule,
+    AlunosCadastroModule,
     AlunosAtualizacaoModule,
   ],
 })

@@ -9,10 +9,9 @@ import { TokenInterceptor } from './services/interceptors/token-interceptor.serv
 import { HomeModule } from './pages/home/home.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { LoginModule } from './pages/login/login.module';
-import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [AppComponent, ButtonComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
