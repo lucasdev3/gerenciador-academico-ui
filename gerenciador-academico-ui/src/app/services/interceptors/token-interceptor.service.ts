@@ -5,20 +5,23 @@ import {
   HttpRequest,
   HttpEvent,
 } from '@angular/common/http';
-import { TokenService } from '../token.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../localstorage.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenService, private router: Router) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.tokenService.getData('token');
+    const token = this.localStorageService.getData('token');
 
     if (token) {
       request = request.clone({
@@ -29,21 +32,17 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return (
-      next
-        .handle(request)
-        .pipe(
-          catchError((error) => {
-            if (error.status === 401 || error.status === 403) {
-              this.router.navigate(['/auth/login']);
-              alert(
-                'Acesso negado. Você não tem permissão para acessar este diretorio, contate o administrador.'
-              );
-              return throwError(error);
-            }
-            return throwError(error);
-          })
-        )
+    return next.handle(request).pipe(
+      catchError((error) => {
+        if (error.status === 401 || error.status === 403) {
+          this.router.navigate(['/auth/login']);
+          alert(
+            'Acesso negado. Você não tem permissão para acessar este diretorio, contate o administrador.'
+          );
+          return throwError(() => error);
+        }
+        return throwError(() => error);
+      })
     );
   }
 }

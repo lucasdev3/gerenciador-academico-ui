@@ -9,7 +9,7 @@ import { AlunosService } from 'src/app/services/alunos.service';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css'],
 })
-export class FormsComponent implements OnInit{
+export class FormsComponent implements OnInit {
   @Input() formNovoAluno: boolean = false;
 
   @Input() novoAluno: FormGroup;
@@ -20,10 +20,7 @@ export class FormsComponent implements OnInit{
 
   @Input() title: string = '';
 
-
-  matricula:string = '';
-
-  
+  matricula: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,11 +41,11 @@ export class FormsComponent implements OnInit{
     });
   }
   ngOnInit() {
+    if (this.formAtualizarAluno) {
+      const matricula: string =
+        this.activatedRouter.snapshot.paramMap.get('matricula') ?? '';
+      this.matricula = matricula;
 
-    if(this.formAtualizarAluno) {
-      const matricula: string = this.activatedRouter.snapshot.paramMap.get('matricula') ?? '';
-      this.matricula  = matricula ;
-  
       this.alunoService.getAlunoPorMatricula(matricula).subscribe({
         next: (res: IAlunosDto) => {
           this.atualizarAluno.patchValue({
@@ -68,13 +65,12 @@ export class FormsComponent implements OnInit{
           }
         },
       });
-      
     }
   }
 
   salvar() {
     const aluno: IAlunosDto = this.novoAluno.value as IAlunosDto;
-    console.log(aluno)
+    console.log(aluno);
     this.alunoService.salvarAluno(aluno).subscribe({
       next: (res) => {
         if (res.message === 'Aluno salvo com sucesso!') {
@@ -90,7 +86,7 @@ export class FormsComponent implements OnInit{
           }
           alert(messageErrors);
         }
-        if(e.error.message) {
+        if (e.error.message) {
           alert(e.error.message);
         }
       },
@@ -101,7 +97,7 @@ export class FormsComponent implements OnInit{
     const aluno: IAlunosDto = this.atualizarAluno.value as IAlunosDto;
     this.alunoService.atualizarAluno(this.matricula, aluno).subscribe({
       next: (res) => {
-       if (res.message === 'Aluno atualizado com sucesso!') {
+        if (res.message === 'Aluno atualizado com sucesso!') {
           alert('Aluno atualizado com sucesso!');
           this.router.navigate(['/dashboard/alunos']);
         }
@@ -118,8 +114,5 @@ export class FormsComponent implements OnInit{
     });
   }
 
-  deletar() {
-    
-  }
-
+  deletar() {}
 }

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ILoginDto } from 'src/app/models/login.dto';
 import { LoginService } from 'src/app/services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from 'src/app/services/auth.service'; 
 import { ITokenDto } from 'src/app/models/token.dto';
 import { Router } from '@angular/router';
 
@@ -14,12 +14,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   login: FormGroup;
-  // localStorageService: LocalStorageService;
 
   constructor(
     private loginService: LoginService,
     private formBuilder: FormBuilder,
-    private tokenService: TokenService,
+    private authService: AuthService,
     private router: Router
   ) {
     this.login = this.formBuilder.group({
@@ -34,7 +33,7 @@ export class LoginComponent {
       next: (res: ITokenDto) => {
         if (res.token) {
           alert('Login realizado com sucesso!');
-          this.tokenService.saveData('token', res.token);
+          this.authService.login(res.token, res.authorities[0].authority);
           this.router.navigate(['/dashboard/alunos']);
         }
       },

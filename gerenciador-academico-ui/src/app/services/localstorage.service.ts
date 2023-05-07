@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class TokenService {
+export class LocalStorageService {
   constructor() {}
 
   public saveData(key: string, value: string) {
@@ -13,6 +13,7 @@ export class TokenService {
   public getData(key: string) {
     return localStorage.getItem(key);
   }
+
   public removeData(key: string) {
     localStorage.removeItem(key);
   }

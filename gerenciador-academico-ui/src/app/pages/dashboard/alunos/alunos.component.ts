@@ -13,17 +13,20 @@ export class AlunosComponent implements OnInit {
   alunos: IAlunosDto[] = [];
   routerLink: string = '';
 
-  constructor(private alunoService: AlunosService, private router: Router, private activatedRouter: ActivatedRoute) {}
+  constructor(
+    private alunoService: AlunosService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    if(this.router.url.includes('/dashboard/alunos/deletar/')) {
+    if (this.router.url.includes('/dashboard/alunos/deletar/')) {
       this.deletar();
       return;
     }
     // carrega os dados
     this.getAlunos();
   }
-
 
   goToCadastro() {
     this.router.navigate(['/dashboard/alunos/cadastro']);
@@ -41,21 +44,22 @@ export class AlunosComponent implements OnInit {
   }
 
   deletar(): void {
-    const matricula: string = this.activatedRouter.snapshot.paramMap.get('matricula') ?? '';
-    let btnConfirm: boolean = confirm('Deseja realmente deletar o aluno com matricula: ' + matricula);
-    if(btnConfirm) {
-          this.alunoService.deletarAluno(matricula).subscribe({
-            next: () => {
-              this.router.navigate(['/dashboard/alunos']);
-            },
-            error: (e) => {
-              console.log(e);
-            },
-          });
-    }else {
+    const matricula: string =
+      this.activatedRouter.snapshot.paramMap.get('matricula') ?? '';
+    let btnConfirm: boolean = confirm(
+      'Deseja realmente deletar o aluno com matricula: ' + matricula
+    );
+    if (btnConfirm) {
+      this.alunoService.deletarAluno(matricula).subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard/alunos']);
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    } else {
       this.router.navigate(['/dashboard/alunos']);
     }
-
   }
-
 }

@@ -26,11 +26,15 @@ export class AlunosService {
   }
 
   atualizarAluno(matricula: string, alunoSaveDto: IAlunosDto): Observable<any> {
-    return this.http.put(`${this.api}/${this.endpoint}/atualizar?matricula=${matricula}`, alunoSaveDto);
+    return this.http.put(
+      `${this.api}/${this.endpoint}/atualizar?matricula=${matricula}`,
+      alunoSaveDto
+    );
   }
 
   deletarAluno(matricula: string): Observable<any> {
-    return this.http.delete(`${this.api}/${this.endpoint}/deletar?matricula=${matricula}`);
+    return this.http.delete(
+      `${this.api}/${this.endpoint}/deletar?matricula=${matricula}`
+    );
   }
-  
 }

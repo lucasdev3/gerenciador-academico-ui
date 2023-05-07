@@ -15,5 +15,4 @@ export class DashboardService {
   getDashboard(): Observable<any> {
     return this.http.get(`${this.api}/${this.endpoint}`);
   }
-  
 }
