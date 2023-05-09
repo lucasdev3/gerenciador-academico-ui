@@ -37,11 +37,7 @@ export class TokenInterceptor implements HttpInterceptor {
      const insecureRequest = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
-      },
-      setParams: {
-        'insecure': 'true',
-      },
-      // withCredentials: true,
+      }
     });
 
     return next.handle(insecureRequest).pipe(
