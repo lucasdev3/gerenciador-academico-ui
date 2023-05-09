@@ -16,6 +16,8 @@ export class AlunosComponent implements OnInit, OnChanges {
   openRoutes: string[] = openRoutes;
   expectedRoutes: any;
   contentLoaded: boolean = false;
+  contentWithError: boolean = false;
+  messageContentError: string = '';
 
   constructor(
     private alunoService: AlunosService,
@@ -49,7 +51,10 @@ export class AlunosComponent implements OnInit, OnChanges {
         this.alunos = res;
       },
       error: (e) => {
-        console.log(e);
+        if (e.error) {
+          this.contentWithError = true;
+          this.messageContentError = e.error.message;
+        }
       },
       complete: () => {
         this.contentLoaded = true;

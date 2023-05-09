@@ -28,11 +28,26 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${token}`,
         },
+        setParams: {
+          'insecure': 'true',
+        },
         responseType: 'json',
+        
       });
     }
 
-    return next.handle(request).pipe(
+     // Desabilita a validação SSL para permitir SSL autoassinado
+     const insecureRequest = request.clone({
+      setHeaders: {
+        'Content-Type': 'application/json',
+      },
+      setParams: {
+        'insecure': 'true',
+      },
+      // withCredentials: true,
+    });
+
+    return next.handle(insecureRequest).pipe(
       catchError((error) => {
         if (error.status === 401 || error.status === 403) {
           this.localStorageService.clearData();
