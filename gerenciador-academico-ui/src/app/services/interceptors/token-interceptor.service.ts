@@ -33,7 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-     // Desabilita a validação SSL para permitir SSL autoassinado
      const insecureRequest = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
