@@ -25,6 +25,8 @@ export class FormsComponent implements OnInit {
 
   matricula: string = '';
 
+  aluno: IAlunosDto | undefined;
+
   constructor(
     private formBuilder: FormBuilder,
     private alunoService: AlunosService,
@@ -72,13 +74,12 @@ export class FormsComponent implements OnInit {
   }
 
   salvar() {
-    const aluno = this.novoAluno.value;
-    this.formSubmitNovoAluno.emit(aluno);
+    this.aluno = this.novoAluno.value;
+    this.formSubmitNovoAluno.emit(this.aluno);
   }
 
   atualizar() {
-    const aluno = this.novoAluno.value;
-    this.formSubmitNovoAluno.emit(aluno);
+    this.aluno = this.atualizarAluno.value;
+    this.formSubmitNovoAluno.emit(this.aluno);
   }
-  
 }

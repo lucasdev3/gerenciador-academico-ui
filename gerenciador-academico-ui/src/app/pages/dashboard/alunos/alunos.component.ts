@@ -15,6 +15,7 @@ export class AlunosComponent implements OnInit, OnChanges {
   alunos: IAlunosDto[] = [];
   openRoutes: string[] = openRoutes;
   expectedRoutes: any;
+  contentLoaded: boolean = false;
 
   constructor(
     private alunoService: AlunosService,
@@ -49,6 +50,9 @@ export class AlunosComponent implements OnInit, OnChanges {
       },
       error: (e) => {
         console.log(e);
+      },
+      complete: () => {
+        this.contentLoaded = true;
       },
     });
   }

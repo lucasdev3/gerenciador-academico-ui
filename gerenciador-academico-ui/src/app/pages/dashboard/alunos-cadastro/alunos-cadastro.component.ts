@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAlunosDto } from 'src/app/models/aluno.dto';
 import { AlunosService } from 'src/app/services/alunos.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-alunos-cadastro',
@@ -10,13 +11,13 @@ import { AlunosService } from 'src/app/services/alunos.service';
   styleUrls: ['./alunos-cadastro.component.css'],
 })
 export class AlunosCadastroComponent implements OnInit {
-  matricula: string = '';
+  expectedRoutes: any;
   goToAlunos: boolean = true;
   novoAluno: FormGroup;
-  atualizarAluno: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private alunoService: AlunosService,
+    private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -27,14 +28,10 @@ export class AlunosCadastroComponent implements OnInit {
       dataNascimento: ['', Validators.required],
     });
 
-    this.atualizarAluno = this.formBuilder.group({
-      nome: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
-    });
+    
   }
   ngOnInit(): void {
-    this.matricula =
-      this.activatedRoute.snapshot.paramMap.get('matricula') ?? '';
+    this.verifyAuthentication();
   }
 
   // Recebe os dados do componente filho
@@ -61,26 +58,11 @@ export class AlunosCadastroComponent implements OnInit {
     });
   }
 
-  atualizar() {
-    const aluno: IAlunosDto = this.atualizarAluno.value as IAlunosDto;
-    this.alunoService.atualizarAluno(this.matricula, aluno).subscribe({
-      next: (res) => {
-        if (res.message === 'Aluno atualizado com sucesso!') {
-          alert('Aluno atualizado com sucesso!');
-          this.router.navigate(['/dashboard/alunos']);
-        }
-      },
-      error: (e) => {
-        if (e.error.message.errors) {
-          let messageErrors = '';
-          for (let error of e.error.message.errors) {
-            messageErrors += error + '\n';
-          }
-          alert(messageErrors);
-        }
-      },
-    });
+  verifyAuthentication() {
+    this.expectedRoutes = this.activatedRoute.snapshot.data;
+    if (!this.authService.hasRequiredRoles(this.expectedRoutes.expectedRoles)) {
+      this.authService.logout();
+    }
   }
 
-  deletar() {}
 }

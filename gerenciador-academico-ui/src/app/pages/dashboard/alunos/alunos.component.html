@@ -1,9 +1,20 @@
 <app-menu></app-menu>
-<div class="container mt-5 mb-3">
-    <button class="btn btn-primary btn-sm mx-sm-1" (click)="goToCadastro()">Cadastrar Aluno</button>
+<div class="row">
+    <div class="container mt-5 mb-3">
+        <button class="btn btn-primary mx-sm-5 m-3" (click)="goToCadastro()">Cadastrar Aluno</button>
+    </div>
 </div>
+
 <div class="container mt-5 mb-3">
-    <div class="table-responsive">
+    <div *ngIf="!contentLoaded">
+        <div class="text-danger text-center p-2">
+            <span>Loading data...</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mx-auto spinner-border text-warning" role="status">
+        </div>
+    </div>
+    
+    <div *ngIf="contentLoaded" class="table-responsive">
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
