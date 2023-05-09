@@ -1,39 +1,58 @@
-<div class="container" *ngIf="formNovoAluno">
-    <h2>{{ title }}</h2>
-    <form [formGroup]="novoAluno" (ngSubmit)="salvar()" class="alunos">
-        <div>
-            <label for="matricula">matricula:</label>
-            <input type="text" id="matricula" name="matricula" formControlName="matricula">
-        </div>
-        <div>
-            <label for="nome">nome:</label>
-            <input type="text" id="nome" name="nome" formControlName="nome">
-        </div>
-        <div>
-            <label for="email">email:</label>
-            <input type="text" id="email" name="email" formControlName="email">
-        </div>
-        <div>
-            <label for="dataNascimento">dataNascimento:</label>
-            <input type="text" id="dataNascimento" name="dataNascimento" formControlName="dataNascimento">
-        </div>
-        <button type="submit">Salvar aluno</button>
-        <button type="button" routerLink="/dashboard/alunos"></button>
-    </form>
+<!-- Aluno Forms -->
+<div class="container py-5" *ngIf="formNovoAluno">
+    <div class="row">
+        <h2 class="d-flex align-self-center justify-content-center mx-auto">{{ title }}</h2>
+    </div>
+    <div class="row">
+        <form [formGroup]="novoAluno" (ngSubmit)="salvar()" class="alunos">
+            <div class="mb-3">
+                <label for="matricula" class="form-label">matricula:</label>
+                <input type="text" id="matricula" class="form-control" name="matricula" formControlName="matricula">
+            </div>
+            <div class="mb-3">
+                <label for="nome" class="form-label">nome:</label>
+                <input type="text" id="nome" class="form-control" name="nome" formControlName="nome">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">email:</label>
+                <input type="text" id="email" class="form-control" name="email" formControlName="email">
+            </div>
+            <div class="mb-3">
+                <label for="dataNascimento" class="form-label">dataNascimento:</label>
+                <input type="text" id="dataNascimento" class="form-control" name="dataNascimento"
+                    formControlName="dataNascimento">
+            </div>
+            <div class="d-flex align-self-center justify-content-center mx-auto">
+                <button type="submit" class="btn btn-success m-3">Salvar aluno</button>
+                <button type="button" class="btn btn-warning m-3" routerLink="/dashboard/alunos">Voltar</button>
+            </div>
+        </form>
+    </div>
+
 </div>
 
-<div class="container" *ngIf="formAtualizarAluno">
-    <h2>{{ title }}</h2>
-    <form [formGroup]="atualizarAluno" (ngSubmit)="atualizar()" class="alunos">
-        <div>
-            <label for="nome">nome:</label>
-            <input type="text" id="nome" name="nome" formControlName="nome">
-        </div>
-        <div>
-            <label for="dataNascimento">dataNascimento:</label>
-            <input type="text" id="dataNascimento" name="dataNascimento" formControlName="dataNascimento">
-        </div>
-        <button type="submit">Salvar aluno</button>
-        <button type="button" routerLink="/dashboard/alunos"></button>
-    </form>
+<div class="container py-5" *ngIf="formAtualizarAluno">
+    <div class="row">
+        <h2 class="d-flex align-self-center justify-content-center mx-auto">{{ title }}</h2>
+    </div>
+    <div class="row">
+        <form [formGroup]="atualizarAluno" (ngSubmit)="atualizar()" class="alunos">
+            <div class="d-flex align-self-center justify-content-center mx-auto">
+                <p id="matricula" class="form-label" name="matricula">Matricula: {{ matricula }}</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="nome">nome:</label>
+                <input type="text" id="nome" class="form-control" name="nome" formControlName="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="dataNascimento">dataNascimento:</label>
+                <input type="text" id="dataNascimento" class="form-control" name="dataNascimento" formControlName="dataNascimento">
+            </div>
+            <div class="d-flex align-self-center justify-content-center mx-auto">
+                <button type="submit" class="btn btn-success m-3">Salvar aluno</button>
+                <button class="btn btn-warning m-3" routerLink="/dashboard/alunos">Voltar</button>
+            </div>
+        </form>
+    </div>
+
 </div>

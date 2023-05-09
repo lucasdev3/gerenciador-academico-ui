@@ -1,44 +1,48 @@
 <app-menu></app-menu>
-<div class="style-tabela mt-5">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-        <tbody>
-
-            <tr>
-                <!-- <td class="top center"><i class="icofont-users-alt-4"></i></td> -->
-                <td class="top center"><strong>Matricula</strong></td>
-                <td class="top center"><strong>Nome</strong></td>
-                <td class="top center"><strong>E-mail</strong></td>
-                <td class="top center"><strong>Data de Nascimento</strong></td>
-                <td class="top center" colspan="2" width="1"><strong>Ações</strong></td>
-            </tr>
-
-        </tbody>
-        <tbody>
-            <tr *ngFor="let aluno of alunos">
-                <td align="center">{{aluno.matricula}}</td>
-                <td align="center">{{aluno.nome}}</td>
-                <td align="center">{{aluno.email}}</td>
-                <td align="center">{{aluno.dataNascimento}}</td>
-                <!-- <td align="center">25/04/2021 <strong>às</strong> 01:03:02</td> -->
-                <td align="center"> <a routerLink="/dashboard/alunos/atualizar/{{aluno.matricula}}"
-                        class="editar fa fa-fa fa-check-circle" title="Editar">Editar</a>
-                </td>
-                <td align="center"> <a routerLink="/dashboard/alunos/deletar/{{aluno.matricula}}"
-                        class="deletar fa fa-times-circle" title="Deletar">Deletar</a> </td>
-            </tr>
-
-            <!-- <tr class="mensagemAlerta">
-                    <td align="center">2</td>
-                    <td align="center">Lucas</td>
-                    <td align="center">lucas@site.com.br</td>
-                    <td align="center">25/04/2021 <strong>às</strong> 01:03:02</td>
-                    <td align="center"> <a href="#" class="editar fa fa-fa fa-check-circle" title="Editar"></a> </td>
-                    <td align="center"> <a href="#" class="deletar fa fa-times-circle" title="Deletar"></a> </td>
-                </tr> -->
-        </tbody>
-    </table>
-</div><!--tabela-->
-<div>
-    <button (click)="goToCadastro()">Cadastrar Aluno</button>
+<div class="container mt-5 mb-3">
+    <button class="btn btn-primary btn-sm mx-sm-1" (click)="goToCadastro()">Cadastrar Aluno</button>
+</div>
+<div class="container mt-5 mb-3">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th class="text-left"><strong>Matricula</strong></th>
+                    <th class="text-center"><strong>Nome</strong></th>
+                    <th class="text-center"><strong>E-mail</strong></th>
+                    <th class="text-center"><strong>Data de Nascimento</strong></th>
+                    <th class="text-center" colspan="2" width="1"><strong>Ações</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aluno of alunos">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="https://avatars.githubusercontent.com/u/79222458?v=4" alt=""
+                                style="width: 45px; height: 45px" class="rounded-circle" />
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1"></p>
+                                <p class="text-muted mb-0">{{aluno.matricula}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{aluno.nome}}</p>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{aluno.email}}</p>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{aluno.dataNascimento}}</p>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" routerLink="/dashboard/alunos/atualizar/{{aluno.matricula}}"
+                            class="btn btn-warning btn-sm mx-sm-1" title="Editar">Editar</button>
+                        <button type="button" routerLink="/dashboard/alunos/deletar/{{aluno.matricula}}"
+                            class="btn btn-danger btn-sm mx-1 my-1" title="Deletar">Deletar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAlunosDto } from 'src/app/models/aluno.dto';
@@ -19,6 +19,9 @@ export class FormsComponent implements OnInit {
   @Input() atualizarAluno: FormGroup;
 
   @Input() title: string = '';
+
+  @Output() formSubmitNovoAluno: EventEmitter<IAlunosDto> =
+    new EventEmitter<IAlunosDto>();
 
   matricula: string = '';
 
@@ -69,50 +72,13 @@ export class FormsComponent implements OnInit {
   }
 
   salvar() {
-    const aluno: IAlunosDto = this.novoAluno.value as IAlunosDto;
-    console.log(aluno);
-    this.alunoService.salvarAluno(aluno).subscribe({
-      next: (res) => {
-        if (res.message === 'Aluno salvo com sucesso!') {
-          alert('Aluno salvo com sucesso!');
-          this.router.navigate(['/dashboard/alunos']);
-        }
-      },
-      error: (e) => {
-        if (e.error.message.errors) {
-          let messageErrors = '';
-          for (let error of e.error.message.errors) {
-            messageErrors += error + '\n';
-          }
-          alert(messageErrors);
-        }
-        if (e.error.message) {
-          alert(e.error.message);
-        }
-      },
-    });
+    const aluno = this.novoAluno.value;
+    this.formSubmitNovoAluno.emit(aluno);
   }
 
   atualizar() {
-    const aluno: IAlunosDto = this.atualizarAluno.value as IAlunosDto;
-    this.alunoService.atualizarAluno(this.matricula, aluno).subscribe({
-      next: (res) => {
-        if (res.message === 'Aluno atualizado com sucesso!') {
-          alert('Aluno atualizado com sucesso!');
-          this.router.navigate(['/dashboard/alunos']);
-        }
-      },
-      error: (e) => {
-        if (e.error.message.errors) {
-          let messageErrors = '';
-          for (let error of e.error.message.errors) {
-            messageErrors += error + '\n';
-          }
-          alert(messageErrors);
-        }
-      },
-    });
+    const aluno = this.novoAluno.value;
+    this.formSubmitNovoAluno.emit(aluno);
   }
-
-  deletar() {}
+  
 }

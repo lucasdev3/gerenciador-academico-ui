@@ -1,0 +1,1 @@
+export const openRoutes = ['/', '/auth/login', '/auth/register'];

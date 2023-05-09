@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,16 +8,31 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  isAuthenticated: boolean = false;
+  // export class MenuComponent implements OnInit, OnChanges {
   currentRoute: string;
+  isAuthenticated: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.isAuthenticated = this.authService.isAuthenticated;
     this.currentRoute = this.router.url;
+  }
+
+  ngOnInit(): void {
+    this.verifyAuthentication();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.verifyAuthentication();
+  }
+
+  verifyAuthentication(): void {
+    if (!this.authService.isAuthenticated) {
+      this.isAuthenticated = false;
+    } else {
+      this.isAuthenticated = true;
+    }
   }
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/']);
   }
 }
