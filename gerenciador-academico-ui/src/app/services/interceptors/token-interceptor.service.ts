@@ -28,9 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${token}`,
         },
-        setParams: {
-          'insecure': 'true',
-        },
         responseType: 'json',
         
       });
