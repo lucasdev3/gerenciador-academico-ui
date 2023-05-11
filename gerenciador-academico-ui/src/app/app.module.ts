@@ -9,6 +9,7 @@ import { TokenInterceptor } from './services/interceptors/token-interceptor.serv
 import { HomeModule } from './pages/home/home.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { LoginModule } from './pages/login/login.module';
+import { RegisterModule } from './pages/register/register.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { LoginModule } from './pages/login/login.module';
     HomeModule,
     DashboardModule,
     LoginModule,
+    RegisterModule,
   ],
   providers: [
     {

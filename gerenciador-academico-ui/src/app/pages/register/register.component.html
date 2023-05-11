@@ -2,10 +2,10 @@
 
 <div class="container border rounded my-5">
   <div class="row py-3">
-    <h2 class="d-flex align-self-center justify-content-center mx-auto">Login</h2>
+    <h2 class="d-flex align-self-center justify-content-center mx-auto">Register</h2>
   </div>
   <div class="d-flex align-items-center justify-content-center p-2">
-    <form [formGroup]="login" (ngSubmit)="getLogin()" class="login">
+    <form [formGroup]="register" (ngSubmit)="getRegister()" class="register">
       <div class="row">
         <div class="col-12 col-md-6 mb-3">
           <label for="username">Username:</label>
@@ -14,9 +14,17 @@
         <div class="col-12 col-md-6 mb-3">
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" name="password" formControlName="password">
-        </div> 
+        </div>
+        <div class="col-6 col-md-6 mb-3">
+          <label for="role">Role:</label>
+          <select id="role" class="form-select " aria-label="Default select example" formControlName="role">
+            <option value="ROLE_PROFESSOR">Professor</option>
+            <option value="ROLE_ALUNO">Aluno</option>
+          </select>
+        </div>
+        
         <div class="col-12 mt-3 d-flex justify-content-center">
-          <button type="submit" class="btn btn-success">Entrar</button>
+          <button type="submit" class="btn btn-success">Registrar</button>
         </div>
       </div>
     </form>

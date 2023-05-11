@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ILoginDto } from 'src/app/models/login.dto';
+import { ILoginDto } from 'src/app/models/auth.dto';
 import { LoginService } from 'src/app/services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; 
@@ -38,6 +38,12 @@ export class LoginComponent {
         }
       },
       error: (e) => {
+        if(e.error) {
+          if(e.error === 'Expired Token!') {
+            alert('Expired Token');
+            this.authService.logout();
+          }
+        }
         console.log(e);
       },
     });

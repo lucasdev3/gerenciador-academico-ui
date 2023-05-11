@@ -53,7 +53,7 @@ export class AlunosComponent implements OnInit, OnChanges {
       error: (e) => {
         if (e.error) {
           this.contentWithError = true;
-          this.messageContentError = e.error.message;
+          this.messageContentError = e.error.message ? e.error.message : 'Falha ao atualizar dados dos alunos. Contate o administrador do sistema.';
         }
       },
       complete: () => {

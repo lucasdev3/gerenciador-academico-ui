@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login.component';
+import { RegisterComponent } from './register.component';
+import { MenuModule } from 'src/app/components/menu/menu.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MenuModule } from 'src/app/components/menu/menu.module';
 
 @NgModule({
-  declarations: [LoginComponent],
-  exports: [LoginComponent],
+  declarations: [RegisterComponent],
+  exports: [RegisterComponent],
   imports: [
     CommonModule,
+    MenuModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MenuModule,
   ],
 })
-export class LoginModule {}
+export class RegisterModule {}

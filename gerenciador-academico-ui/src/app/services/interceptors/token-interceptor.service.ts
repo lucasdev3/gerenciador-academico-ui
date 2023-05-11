@@ -29,17 +29,11 @@ export class TokenInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`,
         },
         responseType: 'json',
-        
+        withCredentials: true
       });
     }
 
-     const insecureRequest = request.clone({
-      setHeaders: {
-        'Content-Type': 'application/json',
-      }
-    });
-
-    return next.handle(insecureRequest).pipe(
+    return next.handle(request).pipe(
       catchError((error) => {
         if (error.status === 401 || error.status === 403) {
           this.localStorageService.clearData();

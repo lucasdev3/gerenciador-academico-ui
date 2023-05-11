@@ -7,10 +7,16 @@ import { AlunosCadastroComponent } from './pages/dashboard/alunos-cadastro/aluno
 import { AlunosAtualizacaoComponent } from './pages/dashboard/alunos-atualizacao/alunos-atualizacao.component';
 import { AuthGuard } from './services/guard/auth-guard.service';
 import { enviroment } from './enviroments/enviroments';
+import { RegisterComponent } from './pages/register/register.component';
+
+const allRoles: string[] = [enviroment.roleAluno, enviroment.roleProfessor, enviroment.roleAdmin]
+const professorAdminRoles: string[] = [enviroment.roleProfessor, enviroment.roleAdmin]
+const alunoAdminRoles: string[] = [enviroment.roleAluno, enviroment.roleAdmin]
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/register', component: RegisterComponent },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
@@ -19,28 +25,28 @@ const routes: Routes = [
         path: 'alunos',
         component: AlunosComponent,
         data: {
-          expectedRoles: [enviroment.roleProfessor, enviroment.roleAdmin],
+          expectedRoles: allRoles,
         },
       },
       {
         path: 'alunos/cadastro',
         component: AlunosCadastroComponent,
         data: {
-          expectedRoles: [enviroment.roleProfessor, enviroment.roleAdmin],
+          expectedRoles: allRoles,
         },
       },
       {
         path: 'alunos/atualizar/:matricula',
         component: AlunosAtualizacaoComponent,
         data: {
-          expectedRoles: [enviroment.roleProfessor, enviroment.roleAdmin],
+          expectedRoles: allRoles
         },
       },
       {
         path: 'alunos/deletar/:matricula',
         component: AlunosComponent,
         data: {
-          expectedRoles: [enviroment.roleProfessor, enviroment.roleAdmin],
+          expectedRoles: allRoles,
         },
       },
     ],
