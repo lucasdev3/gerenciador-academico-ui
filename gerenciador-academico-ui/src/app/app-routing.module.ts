@@ -8,6 +8,8 @@ import { AlunosAtualizacaoComponent } from './pages/dashboard/alunos-atualizacao
 import { AuthGuard } from './services/guard/auth-guard.service';
 import { enviroment } from './enviroments/enviroments';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfessoresComponent } from './pages/dashboard/professores/professores.component';
+import { ProfessoresCadastroComponent } from './pages/dashboard/professores-cadastro/professores-cadastro.component';
 
 const allRoles: string[] = [enviroment.roleAluno, enviroment.roleProfessor, enviroment.roleAdmin]
 const professorAdminRoles: string[] = [enviroment.roleProfessor, enviroment.roleAdmin]
@@ -21,6 +23,7 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGuard],
     children: [
+      // ALUNOS
       {
         path: 'alunos',
         component: AlunosComponent,
@@ -49,6 +52,37 @@ const routes: Routes = [
           expectedRoles: allRoles,
         },
       },
+
+      // PROFESSORES
+      {
+        path: 'professores',
+        component: ProfessoresComponent,
+        data: {
+          expectedRoles: professorAdminRoles,
+        },
+      },
+      {
+        path: 'professores/cadastro',
+        component: ProfessoresCadastroComponent,
+        data: {
+          expectedRoles: professorAdminRoles,
+        },
+      },
+      // {
+      //   path: 'professores/atualizar/:matricula',
+      //   component: AlunosAtualizacaoComponent,
+      //   data: {
+      //     expectedRoles: professorAdminRoles
+      //   },
+      // },
+      {
+        path: 'professores/deletar/:id',
+        component: ProfessoresComponent,
+        data: {
+          expectedRoles: professorAdminRoles,
+        },
+      },
+      
     ],
   },
   { path: '**', component: HomeComponent },

@@ -42,9 +42,15 @@ export class LoginComponent {
           if(e.error === 'Expired Token!') {
             alert('Expired Token');
             this.authService.logout();
+            return;
           }
+          alert(e.error.message);
+          loginDto.password = '';
+          this.login.setValue({
+            username: '',
+            password: ''
+          });
         }
-        console.log(e);
       },
     });
   }

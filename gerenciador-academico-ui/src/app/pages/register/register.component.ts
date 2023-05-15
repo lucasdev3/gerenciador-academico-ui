@@ -21,18 +21,22 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.register = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      role: ['', Validators.required],
+      registerUsuarioDto:this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+        role: ['', Validators.required]
+      }),
+      matricula: ['', Validators.required],
+      nome: ['', Validators.required],
+      email: ['', Validators.required],
+      dataNascimento: ['', Validators.required]
     });
   }
 
   getRegister() {
     const registerDto: IRegisterDto = this.register.value as IRegisterDto;
-    console.log(registerDto);
     this.registerService.register(registerDto).subscribe({
       next: (res) => {
-        console.log(res);
         if(res.message) {
           alert(res.message);
           this.router.navigate(['/auth/login']);
@@ -54,7 +58,6 @@ export class RegisterComponent {
             }
           }
         }
-        console.log(e);
       },
     });
   }

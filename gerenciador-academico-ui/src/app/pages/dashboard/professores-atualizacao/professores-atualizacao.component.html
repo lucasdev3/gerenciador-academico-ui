@@ -1,0 +1,6 @@
+<app-menu></app-menu>
+<div class="container">
+    <app-professores-forms [formAtualizarProfessor]="true" 
+    (formSubmitNovoProfessor)="atualizar($event)"
+    [title]="'Formulário de atualizacão - Professor'"></app-professores-forms>
+</div>

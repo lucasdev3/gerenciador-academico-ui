@@ -1,0 +1,64 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-3">
+    <button class="btn btn-primary mx-sm-5 m-3" (click)="goToCadastro()">Cadastrar Professor</button>
+</div>
+<div class="container mt-5 mb-3">
+
+    <div *ngIf="!contentLoaded && !contentWithError">
+        <div class="text-danger text-center p-2">
+            <span>Loading data...</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mx-auto spinner-border text-warning" role="status">
+        </div>
+    </div>
+
+    <div *ngIf="contentWithError" class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+          {{ messageContentError }}
+        </div>
+      </div>
+    
+    <div *ngIf="contentLoaded" class="table-responsive">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th class="text-left"><strong>ID</strong></th>
+                    <th class="text-center"><strong>Nome</strong></th>
+                    <th class="text-center"><strong>E-mail</strong></th>
+                    <th class="text-center"><strong>Data de Nascimento</strong></th>
+                    <th class="text-center" colspan="2" width="1"><strong>Ações</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let professor of professores">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="https://avatars.githubusercontent.com/u/79222458?v=4" alt=""
+                                style="width: 45px; height: 45px" class="rounded-circle" />
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1"></p>
+                                <p class="text-muted mb-0">{{professor.id}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{professor.nome}}</p>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{professor.email}}</p>
+                    </td>
+                    <td class="text-center">
+                        <p class="fw-normal mb-1">{{professor.dataNascimento}}</p>
+                    </td>
+                    <td class="text-center">
+                         <button type="button" routerLink="/dashboard/professores/atualizar/{{ professor.id}}"
+                            class="btn btn-warning btn-sm mx-sm-1" title="Editar">Editar</button>
+                        <button type="button" routerLink="/dashboard/professores/deletar/{{professor.id}}"
+                            class="btn btn-danger btn-sm mx-1 my-1" title="Deletar">Deletar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

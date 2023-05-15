@@ -6,8 +6,8 @@
   </div>
   <div class="d-flex align-items-center justify-content-center p-2">
     <form [formGroup]="register" (ngSubmit)="getRegister()" class="register">
-      <div class="row">
-        <div class="col-12 col-md-6 mb-3">
+      <div formGroupName="registerUsuarioDto">
+        <div class="col-12 col-md-6 mb-3" >
           <label for="username">Username:</label>
           <input type="text" class="form-control" id="username" name="username" formControlName="username">
         </div>
@@ -22,11 +22,28 @@
             <option value="ROLE_ALUNO">Aluno</option>
           </select>
         </div>
-        
-        <div class="col-12 mt-3 d-flex justify-content-center">
-          <button type="submit" class="btn btn-success">Registrar</button>
-        </div>
       </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label for="matricula">Matricula:</label>
+        <input type="text" class="form-control" id="matricula" name="matricula" formControlName="matricula">
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome" formControlName="nome">
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" name="email" formControlName="email">
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label for="dataNascimento">Data Nascimento:</label>
+        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento"
+          formControlName="dataNascimento">
+      </div>
+      <div class="col-12 mt-3 d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Registrar</button>
+      </div>
+
     </form>
   </div>
 

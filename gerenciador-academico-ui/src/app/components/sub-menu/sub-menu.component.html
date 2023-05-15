@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-6 text-center" *ngIf="!professoresBtn.hiddenBtn">
+        <app-button 
+            [classBtn]="professoresBtn.classBtn" 
+            [textBtn]="professoresBtn.textBtn"
+            [routerLink]="professoresBtn.routerLink"
+            [typeBtn]="professoresBtn.typeBtn">
+        </app-button>
+    </div>
+    <div class="col-6 text-center" *ngIf="!alunosBtn.hiddenBtn">
+        <app-button 
+            [classBtn]="alunosBtn.classBtn" 
+            [textBtn]="alunosBtn.textBtn"
+            [routerLink]="alunosBtn.routerLink"
+            [typeBtn]="alunosBtn.typeBtn">
+        </app-button>
+    </div>
+</div>

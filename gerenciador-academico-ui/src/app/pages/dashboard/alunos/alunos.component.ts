@@ -12,7 +12,7 @@ import { openRoutes } from 'src/app/enviroments/global-variables';
 })
 export class AlunosComponent implements OnInit, OnChanges {
   title: string = 'Alunos';
-  alunos: IAlunosDto[] = [];
+  aluno: IAlunosDto = new Object() as IAlunosDto; 
   openRoutes: string[] = openRoutes;
   expectedRoutes: any;
   contentLoaded: boolean = false;
@@ -47,8 +47,9 @@ export class AlunosComponent implements OnInit, OnChanges {
 
   getAlunos(): void {
     this.alunoService.getAlunos().subscribe({
-      next: (res: IAlunosDto[]) => {
-        this.alunos = res;
+      next: (res: IAlunosDto) => {
+        console.log(res)
+        this.aluno = res;
       },
       error: (e) => {
         if (e.error) {
@@ -74,7 +75,6 @@ export class AlunosComponent implements OnInit, OnChanges {
           this.router.navigate(['/dashboard/alunos']);
         },
         error: (e) => {
-          console.log(e);
         },
       });
     } else {

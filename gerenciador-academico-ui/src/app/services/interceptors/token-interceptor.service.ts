@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ) {
     const token = this.localStorageService.getData('token');
 
     if (token) {
@@ -33,18 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request).pipe(
-      catchError((error) => {
-        if (error.status === 401 || error.status === 403) {
-          this.localStorageService.clearData();
-          this.router.navigate(['/auth/login']);
-          alert(
-            'Acesso negado. Você não tem permissão para acessar este diretorio, contate o administrador.'
-          );
-          return throwError(() => error);
-        }
-        return throwError(() => error);
-      })
-    );
+    return next.handle(request);
+
   }
 }

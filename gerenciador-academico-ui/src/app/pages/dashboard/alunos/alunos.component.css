@@ -1,0 +1,7 @@
+.card .card-img-top {
+  max-width: 50%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 50%;
+  border: none;
+}

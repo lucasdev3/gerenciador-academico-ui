@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormsComponent } from './forms.component';
+import { SubMenuComponent } from './sub-menu.component';
 
-describe('FormsComponent', () => {
-  let component: FormsComponent;
-  let fixture: ComponentFixture<FormsComponent>;
+describe('SubMenuComponent', () => {
+  let component: SubMenuComponent;
+  let fixture: ComponentFixture<SubMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormsComponent ]
+      declarations: [ SubMenuComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormsComponent);
+    fixture = TestBed.createComponent(SubMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

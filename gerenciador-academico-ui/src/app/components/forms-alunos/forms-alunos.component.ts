@@ -5,11 +5,11 @@ import { IAlunosDto } from 'src/app/models/aluno.dto';
 import { AlunosService } from 'src/app/services/alunos.service';
 
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css'],
+  selector: 'app-alunos-forms',
+  templateUrl: './forms-alunos.component.html',
+  styleUrls: ['./forms-alunos.component.css'],
 })
-export class FormsComponent implements OnInit {
+export class FormsAlunoComponent implements OnInit {
   @Input() formNovoAluno: boolean = false;
 
   @Input() novoAluno: FormGroup;
